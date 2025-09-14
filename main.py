@@ -33,30 +33,30 @@ def go(message):
 def battle(message):
     global w, h,coins
     
-    if message.from_user.username not in Pokemonvrag.pokemons.keys() and Pokemon.pokemons.keys():
-        pokemon1 = Pokemonvrag(message.from_user.username)
-        bot.send_message(message.chat.id, pokemon1.info1())
-        bot.send_photo(message.chat.id, pokemon1.show_img1())
-        bot.send_message(message.chat.id, pokemon1.show_abilki1())
-        bot.send_message(message.chat.id, pokemon1.show_weight1())
-        bot.send_message(message.chat.id, pokemon1.show_height1())
-        bot.reply_to(message, "Покемоны обмениваются ударами, ваш использует способность:")
-        bot.reply_to(message, "и...")
-        print(pokemon1.weight1)
+    
+    pokemon1 = Pokemonvrag(message.from_user.username)
+    bot.send_message(message.chat.id, pokemon1.info1())
+    bot.send_photo(message.chat.id, pokemon1.show_img1())
+    bot.send_message(message.chat.id, pokemon1.show_abilki1())
+    bot.send_message(message.chat.id, pokemon1.show_weight1())
+    bot.send_message(message.chat.id, pokemon1.show_height1())
+    bot.reply_to(message, "Покемоны обмениваются ударами, ваш использует способность:")
+    bot.reply_to(message, "и...")
+    print(pokemon1.weight1)
             
-        print(w)
+    print(w)
             
-        if w > pokemon1.weight1 and h > pokemon1.height1:
-            bot.send_message(message.chat.id, "Вы выйграли! Абсолютное превосходство! + 500 монет, для просмотра баланса введите /bal")
-            coins += 500
-        elif w < pokemon1.weight1 and h > pokemon1.height1:
-            bot.send_message(message.chat.id, "Вы выйграли! Благодаря росту! + 250 монет, для просмотра баланса введите /bal")
-            coins += 250
-        elif w > pokemon1.weight1 and h < pokemon1.height1:
-            bot.send_message(message.chat.id, "Вы выйграли! Благодаря массе! + 250 монет, для просмотра баланса введите /bal")
-            coins += 250
-        else:
-            bot.send_message(message.chat.id, "Вы проиграли(")
+    if w > pokemon1.weight1 and h > pokemon1.height1:
+        bot.send_message(message.chat.id, "Вы выйграли! Абсолютное превосходство! + 500 монет, для просмотра баланса введите /bal")
+        coins += 500
+    elif w < pokemon1.weight1 and h > pokemon1.height1:
+        bot.send_message(message.chat.id, "Вы выйграли! Благодаря росту! + 250 монет, для просмотра баланса введите /bal")
+        coins += 250
+    elif w > pokemon1.weight1 and h < pokemon1.height1:
+        bot.send_message(message.chat.id, "Вы выйграли! Благодаря массе! + 250 монет, для просмотра баланса введите /bal")
+        coins += 250
+    else:
+        bot.send_message(message.chat.id, "Вы проиграли(")
         
 @bot.message_handler(commands=['bal'])
 def bal(message):
