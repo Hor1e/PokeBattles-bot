@@ -1,22 +1,22 @@
 from random import randint
 import requests
 
-class Pokemon:
+class Pokemonvrag:
     pokemons = {}
     # Инициализация объекта (конструктор)
-    def __init__(self, pokemon_trainer):
+    def __init__(self, pokemon_trainer1):
 
-        self.pokemon_trainer = pokemon_trainer   
+        self.pokemon_trainer1 = pokemon_trainer1 
 
         self.pokemon_number = randint(1,1000)
-        self.img = self.get_img()
-        self.name = self.get_name()
-        self.abilities = self.get_abilki()
-        self.weight = self.get_weight()
-        self.height = self.get_height()
-        Pokemon.pokemons[pokemon_trainer] = self
+        self.img1 = self.get_img1()
+        self.name1 = self.get_name1()
+        self.abilities1 = self.get_abilki1()
+        self.weight1 = self.get_weight1()
+        self.height1 = self.get_height1()
+        Pokemonvrag.pokemons[pokemon_trainer1] = self
 
-    def get_abilki(self):
+    def get_abilki1(self):
         url = f'https://pokeapi.co/api/v2/pokemon/{self.pokemon_number}/'
         response = requests.get(url)
         if response.status_code == 200:
@@ -27,7 +27,7 @@ class Pokemon:
 
 
     # Метод для получения картинки покемона через API
-    def get_img(self):
+    def get_img1(self):
         url = f'https://pokeapi.co/api/v2/pokemon/{self.pokemon_number}/'
         response = requests.get(url)
         if response.status_code == 200:
@@ -39,7 +39,7 @@ class Pokemon:
         
     
     # Метод для получения имени покемона через API
-    def get_name(self):
+    def get_name1(self):
         url = f'https://pokeapi.co/api/v2/pokemon/{self.pokemon_number}'
         response = requests.get(url)
         if response.status_code == 200:
@@ -48,7 +48,7 @@ class Pokemon:
         else:
             return "Pikachu"
 
-    def get_weight(self):
+    def get_weight1(self):
         url = f'https://pokeapi.co/api/v2/pokemon/{self.pokemon_number}/'
         response = requests.get(url)
         if response.status_code == 200:
@@ -57,7 +57,7 @@ class Pokemon:
         else:
             return "Pikachu"
 
-    def get_height(self):
+    def get_height1(self):
         url = f'https://pokeapi.co/api/v2/pokemon/{self.pokemon_number}/'
         response = requests.get(url)
         if response.status_code == 200:
@@ -67,24 +67,21 @@ class Pokemon:
             return "Pikachu"
 
     # Метод класса для получения информации
-    def info(self):
-        return f"Имя твоего покеомона: {self.name}"
+    def info1(self):
+        return f"Имя твоего врага: {self.name1}"
 
     # Метод класса для получения картинки покемона
-    def show_img(self):
-        return self.img
+    def show_img1(self):
+        return self.img1
     
-    def show_abilki(self):
-        return f"Его способность:{self.abilities}"
+    def show_abilki1(self):
+        return f"Его способность:{self.abilities1}"
 
-    def show_abilkiz(self):
-        return self.abilities
-
-    def show_weight(self):
-        return f"Его вес:{self.weight}"
-
-    def show_height(self):
-        return f"Его рост:{self.height}"
+    def show_weight1(self):
+        return f"Его вес:{self.weight1}"
+    
+    def show_height1(self):
+        return f"Его рост:{self.height1}"
 
 
 
