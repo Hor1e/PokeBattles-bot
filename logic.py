@@ -84,19 +84,12 @@ class Pokemon:
 
 
 class Warrior(Pokemon):
-    def __init__(self):
-        self.weight/100*150
-        self.height/100*110
     def show_height(self):
         return f"Его рост(бонус от класса 10%):{self.height/100*110}"
     def show_weight(self):
         return f"Его вес(бонус от класса 50%):{self.weight/100*150}"
 
 class Mage(Pokemon):
-    def __init__(self):
-        
-        self.weight/100*110
-        self.height/100*150
     def show_weight(self):
         return f"Его вес(бонус от класса 10%):{self.weight/100*110}"
     def show_height(self):

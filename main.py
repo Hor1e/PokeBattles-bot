@@ -29,21 +29,25 @@ def go(message):
         if zifra == 0:
             bot.send_message(message.chat.id, warrior.show_weight())
             bot.send_message(message.chat.id, warrior.show_height())
-            w = self.weight/100*150
-            h = self.height/100*110           
+            w = warrior.weight/100*150
+            h = warrior.height/100*110           
             print(w)
             print(h)
         elif zifra == 1:
             bot.send_message(message.chat.id, mage.show_weight())
             bot.send_message(message.chat.id, mage.show_height())
-            w = self.weight/100*110
-            h = self.height/100*150
+            w = mage.weight/100*110
+            h = mage.height/100*150
             print(w)
             print(h) 
         
     else:
         bot.reply_to(message, "Ты уже создал себе покемона")
 
+@bot.message_handler(commands=['info'])
+def info(message):
+    if message.from_user.username in Pokemon.pokemons.keys():
+        pok = Pokemon.pokemons[message.from_user.username]
 @bot.message_handler(commands=['battle'])
 def battle(message):
     global w, h,coins
