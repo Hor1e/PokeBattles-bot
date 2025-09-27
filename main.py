@@ -1,8 +1,12 @@
 import telebot 
+from random import randint
 from config import token
 
 from logic import Pokemon
+from logic import Warrior
+from logic import Mage
 from plohoilogic import Pokemonvrag
+zifra = randint(0,1)
 
 bot = telebot.TeleBot(token) 
 w = None
@@ -17,15 +21,26 @@ def go(message):
     global w, h
     if message.from_user.username not in Pokemon.pokemons.keys():
         pokemon = Pokemon(message.from_user.username)
+        warrior = Warrior(message.from_user.username)
+        mage = Mage(message.from_user.username)
         bot.send_message(message.chat.id, pokemon.info())
         bot.send_photo(message.chat.id, pokemon.show_img())
         bot.send_message(message.chat.id, pokemon.show_abilki())
-        bot.send_message(message.chat.id, pokemon.show_weight())
-        bot.send_message(message.chat.id, pokemon.show_height())
-        w = pokemon.weight
-        h = pokemon.height
+        if zifra == 0:
+            bot.send_message(message.chat.id, warrior.show_weight())
+            bot.send_message(message.chat.id, warrior.show_height())
+            w = self.weight/100*150
+            h = self.height/100*110           
+            print(w)
+            print(h)
+        elif zifra == 1:
+            bot.send_message(message.chat.id, mage.show_weight())
+            bot.send_message(message.chat.id, mage.show_height())
+            w = self.weight/100*110
+            h = self.height/100*150
+            print(w)
+            print(h) 
         
-        print(w)
     else:
         bot.reply_to(message, "Ты уже создал себе покемона")
 
