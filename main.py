@@ -11,6 +11,9 @@ zifra = randint(0,1)
 bot = telebot.TeleBot(token) 
 w = None
 h = None
+pokemonchik = None
+imaga = None
+abilochka = None
 coins = 0
 @bot.message_handler(commands=['start'])
 def start(message):
@@ -18,14 +21,17 @@ def start(message):
 
 @bot.message_handler(commands=['go'])
 def go(message):
-    global w, h
+    global w, h, pokemonchik, abilochka, imaga
     if message.from_user.username not in Pokemon.pokemons.keys():
         pokemon = Pokemon(message.from_user.username)
         warrior = Warrior(message.from_user.username)
         mage = Mage(message.from_user.username)
         bot.send_message(message.chat.id, pokemon.info())
+        pokemonchik = pokemon.name
         bot.send_photo(message.chat.id, pokemon.show_img())
+        imaga = pokemon.img
         bot.send_message(message.chat.id, pokemon.show_abilki())
+        abilochka = pokemon.abilities
         if zifra == 0:
             bot.send_message(message.chat.id, warrior.show_weight())
             bot.send_message(message.chat.id, warrior.show_height())
@@ -33,6 +39,7 @@ def go(message):
             h = warrior.height/100*110           
             print(w)
             print(h)
+            
         elif zifra == 1:
             bot.send_message(message.chat.id, mage.show_weight())
             bot.send_message(message.chat.id, mage.show_height())
@@ -48,6 +55,12 @@ def go(message):
 def info(message):
     if message.from_user.username in Pokemon.pokemons.keys():
         pok = Pokemon.pokemons[message.from_user.username]
+        bot.send_message(message.chat.id, pokemonchik)
+        bot.send_message(message.chat.id, imaga)
+        bot.send_message(message.chat.id, abilochka)
+        bot.send_message(message.chat.id, f"Вес:{w}")
+        bot.send_message(message.chat.id, f"Рост:{h}")
+
 @bot.message_handler(commands=['battle'])
 def battle(message):
     global w, h,coins

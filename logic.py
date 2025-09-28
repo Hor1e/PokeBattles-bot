@@ -86,11 +86,33 @@ class Pokemon:
 class Warrior(Pokemon):
     def show_height(self):
         return f"Его рост(бонус от класса 10%):{self.height/100*110}"
+    
     def show_weight(self):
         return f"Его вес(бонус от класса 50%):{self.weight/100*150}"
+
+    def feed(self, feed_interval = 20, hp_increase = 10 ):
+        current_time = datetime.current()  
+        delta_time = timedelete(hours=feed_interval)  
+        if (current_time - self.last_feed_time) > delta_time:
+            self.weight += hp_increase
+            self.last_feed_time = current_time
+            return f"Вес покемона увеличен. Текущий вес: {self.weight}"
+        else:
+            return f"Следующее время кормления покемона: {current_time-delta_time}"
 
 class Mage(Pokemon):
     def show_weight(self):
         return f"Его вес(бонус от класса 10%):{self.weight/100*110}"
+    
     def show_height(self):
         return f"Его рост(бонус от класса 50%):{self.height/100*150}"
+
+    def feed(self, feed_interval = 20, hp_increase = 10 ):
+        current_time = datetime.current()  
+        delta_time = timedelete(hours=feed_interval)  
+        if (current_time - self.last_feed_time) > delta_time:
+            self.weight += hp_increase
+            self.last_feed_time = current_time
+            return f"Вес покемона увеличен. Текущий вес: {self.weight}"
+        else:
+            return f"Следующее время кормления покемона: {current_time-delta_time}"
